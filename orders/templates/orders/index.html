@@ -1,0 +1,47 @@
+{% extends "orders/base.html" %}
+{% load static %}
+{% block title %}
+   pizza Shop
+{% endblock %}
+  {% block heading %}
+   <li class="nav-item active">
+     <a class="nav-link" href="{% url 'login' %}">login</a>
+   </li>
+   <li class="nav-item">
+      <a class="nav-link" href="{% url 'signup' %}">Register<span class="sr-only">(current)</span></a>
+  </li>
+{% endblock %}
+
+  {% block body %}
+  {% csrf_token %}
+
+  <!--- image slider section using carose--->
+  <div id="slides" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#slides" data-slide-to="0" class="active"></li>
+      <li data-target="#slides" data-slide-to="1"></li>
+      <li data-target="#slides" data-slide-to="2"></li>
+      <li data-target="#slides" data-slide-to="3"></li>
+    </ol>
+       <div class="carousel-inner">
+         <div class="carousel-item active">
+            <img src="{% static 'images/img2.jpg' %}" class="d-block w-100">
+            <div class="carousel-caption">
+            <h1 class="display-2">Pizza Shop</h1>
+            <h3> Welcome to Pizza Shop</h3>
+            <a href="{% url 'signup' %}" type="submite" class="btn-outline-dark btn-lg">Order here</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/pizza.jpg' %}"  class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/img3.jpg' %}" class="d-block w-100">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/img4.jpg' %}" class="d-block w-100">
+        </div>
+      </div>
+   </div>
+
+  {% endblock %}

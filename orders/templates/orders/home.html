@@ -1,0 +1,112 @@
+{% extends "orders/base.html" %}
+{% load static %}
+{% block title %}
+  Home
+{% endblock %}
+  {% block heading %}
+  <li class="nav-item active">
+    <a class="nav-link" href="{% url 'cart_detail' %}">Cart<i class="fas fa-shopping-cart"></i></a>
+  </li>
+
+   <li class="nav-item active">
+     <a class="nav-link" href="{% url 'logout' %}">{{ user }} Logout</a>
+   </li>
+
+   {% endblock %}
+
+
+{% block body %}
+<div class="container-fluid padding">
+ <div class="row welcome text-center">
+  <div class="col-12">
+    <h1 class="display-4">Pizza Shop</h1>
+    <h3>Menu</h3>
+  </div>
+  <div class="card-group">
+    <div class="card">
+      <img src="{% static 'images/sub.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Subs</h5>
+        <p class="card-text">Please select from the sub menu below</p>
+
+          {% csrf_token %}
+
+            {% for sub in subs %}
+
+                   {{sub.size}}
+                   {{sub.name}}
+                   £{{sub.price}}
+                   {{sub.size}}
+                   <a href="{% url 'add_cart' sub.id %}" class="btn btn-secondary btn-block">Add to cart</a>
+
+            {% endfor %}
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{% static 'images/img2.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Pizza</h5>
+        <p class="card-text">please select from the menu below</p>
+        <div>
+         <a  href="{% url 'order' %}"> Click here to Customise your pizza</a>
+         </div>
+            {% for pizzas in pizza %}
+            {{ pizzas.size }}-{{pizzas.pizza_style}}
+            {{pizzas.name}}-£{{pizzas.price}}
+            {{pizzas.quantity}}
+            <a href="{% url 'add_cart' pizzas.id %}" class="btn btn-secondary btn-block">Add to cart</a>
+            {% endfor %}
+
+       </div>
+
+      </div>
+      <div class="card">
+      <img src="{% static 'images/pasta.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Pasta</h5>
+        <p class="card-text">please select from the menu below</p>
+
+            {% for pasta in pastas %}
+
+            {{ pasta }}
+            <a href="{% url 'add_cart' pasta.id %}" class="btn btn-secondary btn-block">Add to cart</a>
+            {% endfor %}
+
+           <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{% static 'images/img4.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Dinner Platter</h5>
+        <p class="card-text">Please select from the menu below</p>
+
+            {% for dinner in dinners %}
+            {{ dinner }}
+            <a href="{% url 'add_cart' dinner.id %}" class="btn btn-secondary btn-block">Add to cart</a>
+            {% endfor %}
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{% static 'images/salads.jpg' %}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Salads</h5>
+        <p class="card-text">please select a salad from the menu below</p>
+
+            {% for salad in salads %}
+            {{ salad }}
+            <a href="{% url 'add_cart' salad.id %}" class="btn btn-secondary btn-block">Add to cart</a>
+            {% endfor %}
+
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+
+
+
+{% endblock %}

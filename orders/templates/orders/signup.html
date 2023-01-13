@@ -1,0 +1,43 @@
+
+{% extends "orders/base.html" %}
+{% load static %}
+{% block title %}
+  Register
+{% endblock %}
+  {% block heading %}
+   <li class="nav-item active">
+     <a class="nav-link" href="{% url 'index' %}">Home</a>
+   </li>
+   {% endblock %}
+
+{% block body %}
+<div class="container-fluid padding">
+  <div class="row welcome text-center">
+      <div class="col-12">
+        <h1 class="display-4">Pizza Shop</h1>
+      </div>
+
+      <div class="col-12">
+       <p class="lead">Welcome to Pizza shop!please register below</p>
+      </div>
+    </div>
+    <hr class="my-4">
+    <h2>Sign up Form</h2>
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <p>
+         {{ field.label_tag }}<br>
+         {{ field }}
+         {% if field.help_text %}
+           <small style="color: grey">{{ field.help_text }}</small>
+         {% endif %}
+         {% for error in field.errors %}
+           <p style="color: red">{{ error }}</p>
+         {% endfor %}
+      </p>
+      {% endfor %}
+        <button type="submit">Sign up</button>
+    </form>
+
+{% endblock %}

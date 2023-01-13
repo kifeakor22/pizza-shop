@@ -1,0 +1,36 @@
+{% extends "orders/base.html" %}
+{% load static %}
+{% block title %}
+  Home
+{% endblock %}
+  {% block heading %}
+   <li class="nav-item active">
+     <a class="nav-link" href="{% url 'logout' %}">{{ user }} Logout</a>
+   </li>
+
+   {% endblock %}
+
+{% block body %}
+<div class="container-fluid padding">
+ <div class="row welcome text-center">
+  <div class="col-12">
+    <h1 class="display-4">Pizza Shop</h1>
+  </div>
+  <div class="col-12">
+    <p class="lead">Welcome to Pizza shop!
+    please customise your pizza below</p>
+  </div>
+  </div>
+  </div>
+<div class="container-fluid padding">
+<hr class="my-4">
+ <form action="{% url 'home' %}" method="post">
+  <form method="post" action="{% url 'home' %}" class="input-group">
+  {{ form.name_of_field.errors }}
+   {% csrf_token %}
+    {{ form.as_p }}
+     <input type="submit" value="Add">
+  </form>
+  </div>
+
+{% endblock %}
