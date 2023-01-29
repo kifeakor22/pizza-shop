@@ -1,3 +1,3 @@
-# Project 3
+# Pizza Shop
 
 Web Programming with Python and JavaScript
